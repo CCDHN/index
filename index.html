@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cámara de Comercio Digital de Honduras - Impulsando la innovación digital y el ecosistema blockchain.">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Cámara de Comercio Digital de Honduras</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Fonts: Inter and Urbanist -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Urbanist:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- GSAP for Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/EasePack.min.js" defer></script>
+
+    <!-- Main Script -->
+    <script src="js/main.js" defer></script>
+</head>
+
+<body>
+    <!-- Intro Transition Overlay -->
+    <div id="screenBlack"></div>
+
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <!-- Placeholder for Logo -->
+                <div class="logo-wrapper">
+                    <img src="assets/images/logo1.png" alt="Cámara de Comercio Digital de Honduras Logo"
+                        class="logo-image">
+                    <div class="logo-text">
+                        <span>CÁMARA</span>
+                        <span>DE COMERCIO</span>
+                        <span>DIGITAL de HONDURAS</span>
+                    </div>
+                </div>
+            </a>
+
+            <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                    <li><a href="#propuesta">Propuesta</a></li>
+                    <li><a href="#afiliados">Afiliados</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#unete" class="btn btn-primary">Únete a Nosotros</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section with Animation -->
+        <section id="inicio" class="hero large-header">
+            <canvas id="demo-canvas"></canvas>
+            <div class="hero-content">
+                <!-- Text Animation: SVG Stroke Effect -->
+                <div class="svg-container">
+                    <svg viewBox="0 0 800 150" class="hero-svg">
+                        <text x="50%" y="60%" text-anchor="middle" class="animated-text">INNOVACIÓN DIGITAL</text>
+                    </svg>
+                </div>
+                <p class="subtitle">Impulsando el crecimiento de las empresas mediante el uso de tecnología y la
+                    facilitación del comercio en línea en Honduras</p>
+                <a href="#unete" class="btn btn-outline">Ser Parte del Cambio</a>
+            </div>
+        </section>
+
+        <!-- Who We Are -->
+        <section id="quienes-somos" class="section">
+            <div class="container">
+                <h2 class="section-title">Lo Que Somos</h2>
+                <div class="grid-2">
+                    <div class="text-content">
+                        <p>Somos una organización sin fines de lucro dedicada a fomentar la innovación digital
+                            disruptiva. Nuestra misión es desarrollar ecosistemas tecnológicos robustos que impulsen la
+                            economía digital en la región.</p>
+                        <p>Aspiramos a ser un referente en Latinoamérica, evolucionando hacia una estructura
+                            descentralizada y transparente.</p>
+                    </div>
+                    <div class="card highlight-card">
+                        <h3>Nuestra Visión</h3>
+                        <p>Ser el ecosistema digital líder que transforme el comercio tradicional en un modelo global,
+                            innovador y sostenible, eliminando las barreras geográficas para los negocios.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Value Proposition -->
+        <section id="propuesta" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Propuesta de Valor</h2>
+                <div class="grid-3">
+                    <div class="card feature-card">
+                        <div class="icon">🚀</div>
+                        <h3>Talento y Startups</h3>
+                        <p>Identificamos y promovemos el talento digital, apoyando a emprendedores con visión
+                            tecnológica.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <div class="icon">⚖️</div>
+                        <h3>Regulación</h3>
+                        <p>Promovemos marcos regulatorios que faciliten modelos de negocio digitales y seguridad
+                            jurídica.</p>
+                    </div>
+                    <div class="card feature-card">
+                        <div class="icon">🤝</div>
+                        <h3>Alianzas</h3>
+                        <p>Conectamos instituciones, empresas y profesionales para fortalecer el desarrollo tecnológico.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Affiliates / Partners -->
+        <section id="afiliados" class="section">
+            <div class="container">
+                <h2 class="section-title">Nuestros Aliados</h2>
+                <div class="partners-grid">
+                    <!-- Placeholders for Partner Logos -->
+                    <div class="partner-logo">Aliado 1</div>
+                    <div class="partner-logo">Aliado 2</div>
+                    <div class="partner-logo">Aliado 3</div>
+                    <div class="partner-logo">Aliado 4</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contacto" class="footer">
+        <div class="container footer-content">
+            <div class="footer-info">
+                <h3>Cámara de Comercio Digital</h3>
+                <p>Transformando el futuro digital de Honduras.</p>
+                <div class="contact-details">
+                    <p>📧 info@camaradigital.hn</p>
+                    <p>📍 Tegucigalpa, Honduras</p>
+                </div>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">FB</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                    <a href="#" aria-label="LinkedIn">IN</a>
+                </div>
+            </div>
+            <div class="footer-form">
+                <h4>Contáctanos</h4>
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Mensaje enviado (demo)');">
+                    <input type="text" placeholder="Nombre" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea placeholder="Mensaje" rows="4" required></textarea>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cámara de Comercio Digital de Honduras. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
