@@ -273,8 +273,15 @@ function initAnimation() {
         target.y = posy;
     }
 
+    // Store initial width to ignore vertical-only resizes on mobile
+    let lastWidth = window.innerWidth;
+
     function resize() {
-        window.location.reload();
+        const newWidth = window.innerWidth;
+        if (newWidth !== lastWidth) {
+            lastWidth = newWidth;
+            window.location.reload();
+        }
     }
 
     animate();
