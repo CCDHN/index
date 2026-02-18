@@ -273,14 +273,32 @@ function initAnimation() {
         target.y = posy;
     }
 
-    // Store initial width to ignore vertical-only resizes on mobile
+    // Store initial dimensions
     let lastWidth = window.innerWidth;
+    let resizeTimeout;
 
     function resize() {
         const newWidth = window.innerWidth;
-        if (newWidth !== lastWidth) {
-            lastWidth = newWidth;
-            window.location.reload();
+
+        // Ignore small changes (address bar, slight rounding)
+        // Only trigger if width changes by more than 50px (e.g. orientation change)
+        if (Math.abs(newWidth - lastWidth) > 50) {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                lastWidth = newWidth;
+
+                // Update canvas dimensions without reloading page
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+
+                // Re-initialize points (optional, but good for layout adaptation)
+                // For now, simpler approach: just update bounds for bounds checking
+                // If points need full reset, we'd need to extract that logic.
+                // Given the issue is "prevent reload", avoiding reload is key.
+
+            }, 200); // Debounce
         }
     }
 
