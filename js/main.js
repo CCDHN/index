@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initThemeToggle(); // Initialize theme toggle
     initSmoothScroll();
+    initSectionNavigator();
 
     // Animation last, with error handling
     try {
@@ -303,4 +304,37 @@ function initAnimation() {
     }
 
     animate();
+}
+
+/**
+ * 4. Section Navigator Logic
+ */
+function initSectionNavigator() {
+    const navDots = document.querySelectorAll('.nav-dot');
+    const sections = document.querySelectorAll('section');
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '-50% 0px -50% 0px', // Active when section is in middle of screen
+        threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                // Remove active class from all dots
+                navDots.forEach(dot => dot.classList.remove('active'));
+                // Add active class to corresponding dot
+                const activeDot = document.querySelector(`.nav-dot[href="#${id}"]`);
+                if (activeDot) {
+                    activeDot.classList.add('active');
+                }
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 }
