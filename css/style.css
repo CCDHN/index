@@ -172,6 +172,12 @@ a {
     padding: 15px 0;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
 .theme-toggle {
     background: none;
     border: 1px solid var(--glass-border);
@@ -249,12 +255,54 @@ a {
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-dim);
+    position: relative;
+    padding: 10px 15px;
+    margin: 0 5px;
+    transition: color 0.3s;
+}
+
+/* Border Y to X Animation */
+.nav-menu a::before,
+.nav-menu a::after {
+    position: absolute;
+    opacity: 0;
+    /* Changed from 0.5 to 0 for cleaner look until hover */
+    height: 100%;
+    width: 2px;
+    content: '';
+    background: var(--primary-color);
+    /* Using primary color for the border */
+    transition: all 0.3s;
+}
+
+.nav-menu a::before {
+    left: 0px;
+    top: 0px;
+}
+
+.nav-menu a::after {
+    right: 0px;
+    bottom: 0px;
+}
+
+.nav-menu a:hover::before,
+.nav-menu a:hover::after,
+.nav-menu a.active::before,
+.nav-menu a.active::after {
+    opacity: 1;
+    height: 2px;
+    width: 100%;
 }
 
 .nav-menu a:hover,
 .nav-menu a.active {
-    color: var(--primary-color);
+    color: var(--text-light);
+    /* Text becomes bright on hover */
 }
+
+/* Removed old hover color transition since it's handled in the animation block now 
+   But keeping a fallback or specific override if needed
+*/
 
 .mobile-menu-btn {
     display: none;
@@ -492,6 +540,15 @@ a {
 
     .nav-menu ul {
         flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-menu a {
+        font-size: 1.2rem;
+        /* Larger text for mobile */
+        display: inline-block;
+        /* Needed for transform/border */
+        margin: 5px 0;
     }
 
     .grid-2 {

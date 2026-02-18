@@ -28,6 +28,15 @@
 
     <!-- Main Script -->
     <script src="js/main.js" defer></script>
+
+    <!-- Theme Update -->
+    <script>
+        (function () {
+            // Check for saved theme preference, otherwise use dark
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+        })();
+    </script>
 </head>
 
 <body>
@@ -48,27 +57,30 @@
                     </div>
                 </div>
             </a>
-            
-            <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
-                <span class="icon">🌙</span>
-            </button> <!-- Added Toggle Button -->
 
-            <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+            </a>
 
-            <nav class="nav-menu">
-                <ul>
-                    <li><a href="#inicio">Inicio</a></li>
-                    <li><a href="#quienes-somos">Quiénes Somos</a></li>
-                    <li><a href="#propuesta">Propuesta</a></li>
-                    <li><a href="#afiliados">Afiliados</a></li>
-                    <li><a href="#contacto">Contacto</a></li>
-                    <li><a href="#unete" class="btn btn-primary">Únete a Nosotros</a></li>
-                </ul>
-            </nav>
+            <div class="header-right">
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#quienes-somos">Quiénes Somos</a></li>
+                        <li><a href="#propuesta">Propuesta</a></li>
+                        <li><a href="#afiliados">Afiliados</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </nav>
+
+                <button id="theme-toggle" class="theme-toggle" aria-label="Cambiar tema">
+                    <span class="icon">🌙</span>
+                </button>
+
+                <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
         </div>
     </header>
 
