@@ -6,6 +6,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Priority: UI functionality first
     initMobileMenu();
+    initThemeToggle(); // Initialize theme toggle
     initSmoothScroll();
 
     // Animation last, with error handling
@@ -15,6 +16,36 @@ document.addEventListener('DOMContentLoaded', () => {
         console.warn('Animation failed to initialize:', e);
     }
 });
+
+/**
+ * Theme Toggle
+ */
+function initThemeToggle() {
+    const toggleBtn = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const icon = toggleBtn.querySelector('.icon');
+
+    // Check saved preference
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    html.setAttribute('data-theme', savedTheme);
+    updateIcon(savedTheme);
+
+    toggleBtn.addEventListener('click', () => {
+        const currentTheme = html.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        html.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+
+        // Dispatch event for animation to pick up changes
+        document.dispatchEvent(new Event('themeChanged'));
+    });
+
+    function updateIcon(theme) {
+        icon.textContent = theme === 'dark' ? '🌙' : '☀️';
+    }
+}
 
 /**
  * 1. Mobile Menu Toggle
@@ -70,12 +101,28 @@ function initAnimation() {
     const target = { x: width / 2, y: height / 2 };
 
     const largeHeader = document.getElementById('inicio');
-    largeHeader.style.height = height + 'px';
+    // largeHeader.style.height = height + 'px'; // Avoid overriding CSS height if possible, or keep it strict
 
     const canvas = document.getElementById('demo-canvas');
     canvas.width = width;
     canvas.height = height;
     const ctx = canvas.getContext('2d');
+
+    // Color Config
+    let particleRGB = '255, 255, 255';
+    let lineRGB = '58, 134, 255';
+
+    function updateColors() {
+        const style = getComputedStyle(document.body);
+        particleRGB = style.getPropertyValue('--particle-rgb').trim() || '255, 255, 255';
+        lineRGB = style.getPropertyValue('--particle-line-rgb').trim() || '58, 134, 255';
+    }
+
+    // Initial load
+    updateColors();
+
+    // Listen for theme changes
+    document.addEventListener('themeChanged', updateColors);
 
     // Points configuration
     let points = [];
@@ -129,7 +176,7 @@ function initAnimation() {
 
     // Assign circles
     for (let i in points) {
-        const c = new Circle(points[i], 2 + Math.random() * 2, 'rgba(255,255,255,0.3)');
+        const c = new Circle(points[i], 2 + Math.random() * 2);
         points[i].circle = c;
     }
 
@@ -188,20 +235,22 @@ function initAnimation() {
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p.closest[i].x, p.closest[i].y);
-            ctx.strokeStyle = 'rgba(58, 134, 255,' + p.active + ')';
+
+            // Use lineRGB variable
+            ctx.strokeStyle = 'rgba(' + lineRGB + ',' + p.active + ')';
             ctx.stroke();
         }
     }
 
-    function Circle(pos, rad, color) {
+    function Circle(pos, rad) {
         this.pos = pos;
         this.radius = rad;
-        this.color = color;
         this.draw = function () {
             if (!this.active) return;
             ctx.beginPath();
             ctx.arc(this.pos.x, this.pos.y, this.radius, 0, 2 * Math.PI, false);
-            ctx.fillStyle = 'rgba(255, 255, 255,' + this.active + ')';
+            // Use particleRGB variable
+            ctx.fillStyle = 'rgba(' + particleRGB + ',' + this.active + ')';
             ctx.fill();
         };
     }
