@@ -96,8 +96,8 @@ function initSmoothScroll() {
  * Original inspiration: https://codepen.io/MarcoGuglielmelli/pen/ExGYae
  */
 function initAnimation() {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
     const target = { x: width / 2, y: height / 2 };
 
     const largeHeader = document.getElementById('inicio');
